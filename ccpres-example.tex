@@ -1,0 +1,234 @@
+% Template for Carleton student presentations
+% Author: Andrew Gainer-Dewar, 2013
+\documentclass{beamer}
+
+% Beamer has facilities to format handouts and notes to go along with your slides,
+% but we won't use them here.
+\mode<presentation>
+
+% Beamer comes with *lots* of themes. Boadilla is a nice choice;
+% it's elegant and stays out of the way.
+% Many of the standard themes are very busy, with tables of contents in the
+% sidebar and other messiness. This is usually just a distraction for your audience.
+% (If they're looking at the ToC, it's because they're bored!)
+\usetheme{Boadilla}
+
+% We then load in the custom Carleton color scheme
+\usecolortheme{carl}
+
+% The lxfonts package is a nice choice for a presentation.
+% lmodern and arev are also good choices (but the latter looks a
+% bit clunky with math).
+\usepackage[T1]{fontenc}
+\usepackage{lxfonts}
+
+% By default, Beamer puts some useless cruft at the bottom of the page.
+% We turn it off.
+\setbeamertemplate{navigation symbols}{}
+
+% Set your title and author data here.
+% The optional arguments will be used in the running footer;
+% simply remove them if you want to re-use the long versions.
+\title[Example presentation]{An example of a presentation with \LaTeX{} and Beamer}
+\subtitle[Test]{Test subtitle}
+\author[Jeremiah \and Langstrom]{Lori T.~Jeremiah \and Ray B.~Langstrom}
+\institute[Carleton]{Carleton College}
+\date{February 21, 2014}
+
+\begin{document}
+
+% Each slide goes in a frame environment.
+% The first one should be your title page, which is
+% set up automatically by Beamer.
+\begin{frame}
+  \titlepage
+
+  \begin{center}
+    Project advisor: M.~Holmes \\
+    Dept.~of Mathemagical Inquiry
+  \end{center}
+\end{frame}
+
+% Some people like to include a table of contents.
+% (I find them tacky; your audience shouldn't need a map!)
+\begin{frame}
+  \frametitle{Contents}
+  \tableofcontents
+\end{frame}
+
+\section{Basics}
+% Every frame should have a \frametitle
+\begin{frame}
+  \frametitle{Title of the first frame}
+  This frame has very little content.
+
+  \begin{alertblock}{Caution}
+    This example is meant to be used alongside its source!
+    If you are only viewing the PDF, this document will not be useful to you.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile] % The argument "fragile" protects \verb, which is badly-behaved.
+  \frametitle{Text formatting}
+  Beamer supports the same text-formatting commands as ordinary \LaTeX{}.
+
+  However, for best results, you should use \verb|\alert| instead of \verb|\emph|:
+
+  \begin{itemize}
+  \item \emph{emph text}
+  \item \alert{alert text}
+  \end{itemize}
+
+  \textbf{Bold text} should be avoided; you can't be sure it will be distinct on a projector.
+\end{frame}
+
+\section{Blocks}
+\begin{frame}
+  \frametitle{Use of block environments I}
+  Beamer supports the standard block environments.
+
+  \begin{theorem}
+    You can write theorems.
+  \end{theorem}
+
+  \begin{proof}
+    They can have proofs!
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Use of block environments II}
+  \begin{example}
+    You can also give examples.
+  \end{example}
+
+  \begin{definition}
+    And define \alert{terms}.
+  \end{definition}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Use of block environments III}
+  \begin{block}{Custom block}
+    You can even create custom blocks!
+  \end{block}
+
+  \begin{exampleblock}{Custom example}
+    And custom example blocks!
+  \end{exampleblock}
+\end{frame}
+
+\section{Math}
+\begin{frame}
+  \frametitle{Using math in Beamer}
+
+  Math works both inline: $x^{2} + y^{2} = z^{2}$
+  and display:
+  \[ \int_{-\infty}^{\infty} e^{-x^{2}} \, \mathrm{d}x = \sqrt{\pi} \]
+\end{frame}
+
+\section{Lists}
+\begin{frame}
+  \frametitle{Lists in Beamer}
+  Beamer also has support for ordered and unordered lists.
+
+  \begin{enumerate}
+  \item An ordered item.
+  \item Another ordered item.
+    \begin{itemize}
+    \item An unordered subitem.
+    \item Another unordered subitem.
+    \end{itemize}
+  \item A third ordered item.
+  \end{enumerate}
+\end{frame}
+
+\section{Overlays}
+\begin{frame}
+  \frametitle{Overlay specifications}
+  Beamer allows you to set up animated slides using ``overlays''.
+  Use this with caution---less is more!
+
+  Overlays are created by specifying the numbers of the subslides on which the object should appear.
+\end{frame}
+
+\begin{frame}[fragile] % The "fragile" argument protects \verb, which is badly-behaved
+  \frametitle{Example of overlay with itemize}
+  The following items will appear one at a time.
+  Each is created using the \verb|\item| call shown.
+  \begin{itemize}
+  \item<1-> \verb|\item<1->|
+  \item<2-> \verb|\item<2->|
+  \item<3-> \verb|\item<3->|
+  \item<4-> \verb|\item<4->|
+  \end{itemize}
+\end{frame}
+
+\subsection{Simplified syntax}
+\begin{frame}[fragile]
+  \frametitle{Example of simplified overlay with itemize}
+
+  Beamer supports a simplified syntax for revealing lists one item at a time.
+  \begin{block}{Code}
+  \begin{verbatim}
+\begin{itemize}[<+->]
+  \item First item
+  \item Second item
+  \item Third item
+\end{itemize}
+  \end{verbatim}
+  \end{block}
+
+  \begin{itemize}[<+->]
+    \item First item
+    \item Second item
+    \item Third item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example of simplified overlay with text}
+  You can also use a simplified syntax to reveal a slide from top to bottom using \verb|\pause|.
+
+  \pause
+
+  This text will appear only on the second slide.
+\end{frame}
+
+\section{Structure and ToC}
+\begin{frame}[fragile]
+  \frametitle{Document structure}
+  A Beamer presentation can be structured using \verb|\section| and \verb|\subsection|, just like a paper.
+
+  These commands go \alert{between} the slides.
+  They do not change the text on your slides, but they show up in the Table of Contents, and some themes show them in a sidebar or tree.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tables of contents}
+  Beamer supports automatically building tables of contents.
+
+  \begin{alertblock}{Caution}
+    Be careful how you use the table of contents.
+    Just throwing an outline slide up and then using a minute to read it out is a waste of your audience's time.
+  \end{alertblock}
+\end{frame}
+
+\section{Slide formatting}
+\begin{frame}
+  \frametitle{Multicolumn slides}
+  Beamer supports slides with multiple columns.
+
+  \begin{columns}
+    \column{0.4\textwidth} %Using .4\textwidth leaves some gutter space between the columns, which is good with blocks.
+    \begin{theorem}
+      Here is a theorem.
+    \end{theorem}
+
+    \column{0.4\textwidth}
+    \begin{proof}
+      And here is its proof.
+    \end{proof}
+  \end{columns}
+\end{frame}
+\end{document}
