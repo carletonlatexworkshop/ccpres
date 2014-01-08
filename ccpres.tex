@@ -13,18 +13,16 @@
 % (If they're looking at the ToC, it's because they're bored!)
 \usetheme{Boadilla}
 
-% We then load in the custom Carleton color scheme
+% We then load in the custom Carleton color scheme.
 \usecolortheme{carl}
+
+% Finally, we load the style file, which sets up various things for us.
+\usepackage{ccpres}
 
 % The lxfonts package is a nice choice for a presentation.
 % lmodern and arev are also good choices (but the latter looks a
 % bit clunky with math).
-\usepackage[T1]{fontenc}
 \usepackage{lxfonts}
-
-% By default, Beamer puts some useless cruft at the bottom of the page.
-% We turn it off.
-\setbeamertemplate{navigation symbols}{}
 
 % Set your title and author data here.
 % The optional arguments will be used in the running footer;
